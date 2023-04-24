@@ -13,7 +13,7 @@ const App = () =>{
   const [movies,setMovies] = useState([]);
   const[searchValue, setSearchValue] = useState('')
   const [favourites,setFavourites] = useState([])
-
+  
   
   const getMovieRequest = async() => {
     const url = `https://www.omdbapi.com/?apikey=c6676612&s=${searchValue}`;
@@ -29,6 +29,9 @@ const App = () =>{
       setMovies([])
     }
   };
+
+  
+
 
   useEffect(()=>{
     getMovieRequest(searchValue);
@@ -53,13 +56,17 @@ const App = () =>{
   };
 
   const addFavouriteMovie = (movie) => {
-
-      const movieExists = favourites.some((favMovie) => favMovie.Title === movie.Title);
-      if(!movieExists){
-        const newFavouriteList = [...favourites,movie];
-        setFavourites(newFavouriteList);
-        saveToLocalStorage(newFavouriteList);
+      if(favourites!= null){
+        const movieExists = favourites.some((favMovie) => favMovie.Title === movie.Title);
+        
+        if(!movieExists){
+          const newFavouriteList = [...favourites,movie];
+          setFavourites(newFavouriteList);
+          saveToLocalStorage(newFavouriteList);
+        }
       }
+      
+      
   };
 
   const removeFavouriteMovie = (movie) => {
