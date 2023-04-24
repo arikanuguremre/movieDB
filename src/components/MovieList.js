@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 
 
+
 const MovieList = (props) => {
   const FavouriteComponent = props.favouriteComponent;
   const handleFavouritesdeep = props.handleFavouritesClick;
@@ -15,7 +16,7 @@ const MovieList = (props) => {
   useEffect(() => {
     // API sorgusu için fonksiyon tanımlaması
     const fetchRatings = async (movieTitle) => {
-      const response = await fetch(`http://www.omdbapi.com/?apikey=c6676612&t=${movieTitle}`);
+      const response = await fetch(`https://www.omdbapi.com/?apikey=c6676612&t=${movieTitle}`);
       const data = await response.json();
       return data.Ratings[0].Value;
     };
